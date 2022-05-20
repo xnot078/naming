@@ -113,7 +113,7 @@ class get_word_combinations(get_score):
         mask = subset['部首字'] == head
         return subset[mask]
 
-    def go(self, m1='實', m2='\w', head1='', head2='竹', do_scoring=True, tops=None)->pd.DataFrame:
+    def go(self, m1='實', m2='\w', head1='', head2='竹', do_scoring=True, tops=None, lastName='陳')->pd.DataFrame:
         name_com, name_com_meaning = self.find_word_com(m1, m2, head1, head2)
 
         all_names = [j for i in name_com.values() for j in i]
@@ -134,7 +134,7 @@ class get_word_combinations(get_score):
         for i in pbar:
             pbar.set_description(i)
             try:
-                s = self.scoring('陳', i)
+                s = self.scoring(lastName, i)
             except:
                 s = None
             scores.append(s)
